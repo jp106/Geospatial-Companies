@@ -222,7 +222,14 @@ let currentParameters ={
     focus:'',
     website:'',
     city:'',
-    address:''
+    address:'',
+    facebook:'',
+    linkedin:'',
+    twitter:'',
+    mastodon:'',
+    youtube:'',
+    github:'',
+    instagram:''
 }
 const fieldNames = {
     name:'Name',
@@ -236,7 +243,14 @@ const fieldNames = {
     focus:'Focus',
     website:'Website',
     city:'City',
-    address:'Address'
+    address:'Address',
+    facebook:'facebook_link',
+    linkedin:'linkedin_link',
+    twitter:'twitter_link',
+    mastodon:'mastodon_link',
+    youtube:'youtube_link',
+    github:'github_link',
+    instagram:'instagram_link'
 }
 
 function attachEditEvent(feature){
@@ -264,8 +278,16 @@ function openEditForm(){
         document.getElementById('inputCountry').value = feature.properties.Country;
         document.getElementById('inputCity').value = feature.properties.City;
         document.getElementById('inputAddress').value = feature.properties.Address;
+        document.getElementById('inputFacebook').value = feature.properties.Facebook;
+        document.getElementById('inputLinkedIn').value = feature.properties.LinkedIn;
+        document.getElementById('inputTwitter').value = feature.properties.Twitter;
+        document.getElementById('inputMastodon').value = feature.properties.Mastodon;
+        document.getElementById('inputYouTube').value = feature.properties.YouTube;
+        document.getElementById('inputGitHub').value = feature.properties.GitHub;
+        document.getElementById('inputInstagram').value = feature.properties.Instagram;
         document.getElementById('inputImage').value = feature.properties.Logo;
         const e = new Event("change");
+
         document.getElementById('inputImage').dispatchEvent(e);
         currentParameters.id = feature.properties.id;
         inputSubmit.onclick = submitComment
@@ -538,6 +560,83 @@ function buildForm(){
 
     form.append(spanAddress,document.createElement('br'))
 
+    let spanFacebook = document.createElement('span');
+    spanFacebook.classList.add('form-span')
+    let labelFacebook = document.createElement('label');
+    labelFacebook.innerHTML = `<b>Facebook URL:</b>`;
+    let inputFacebook = document.createElement('input');
+    inputFacebook.type = 'text';
+    inputFacebook.id = 'inputFacebook';
+    spanFacebook.append(labelFacebook,document.createElement('br'),inputFacebook)
+    
+    form.append(spanFacebook,document.createElement('br'))
+
+    let spanLinkedIn = document.createElement('span');
+    spanLinkedIn.classList.add('form-span')
+    let labelLinkedIn = document.createElement('label');
+    labelLinkedIn.innerHTML = `<b>LinkedIn URL:</b>`;
+    let inputLinkedIn = document.createElement('input');
+    inputLinkedIn.type = 'text';
+    inputLinkedIn.id = 'inputLinkedIn';
+    spanLinkedIn.append(labelLinkedIn,document.createElement('br'),inputLinkedIn)
+
+    form.append(spanLinkedIn,document.createElement('br'))
+
+    let spanTwitter = document.createElement('span');
+    spanTwitter.classList.add('form-span')
+    let labelTwitter = document.createElement('label');
+    labelTwitter.innerHTML = `<b>Twitter URL:</b>`;
+    let inputTwitter = document.createElement('input');
+    inputTwitter.type = 'text';
+    inputTwitter.id = 'inputTwitter';
+    spanTwitter.append(labelTwitter,document.createElement('br'),inputTwitter)
+
+    form.append(spanTwitter,document.createElement('br'))
+
+    let spanMastodon = document.createElement('span');
+    spanMastodon.classList.add('form-span')
+    let labelMastodon = document.createElement('label');
+    labelMastodon.innerHTML = `<b>Mastodon URL:</b>`;
+    let inputMastodon = document.createElement('input');
+    inputMastodon.type = 'text';
+    inputMastodon.id = 'inputMastodon';
+    spanMastodon.append(labelMastodon,document.createElement('br'),inputMastodon)
+
+    form.append(spanMastodon,document.createElement('br'))
+
+    let spanYouTube = document.createElement('span');
+    spanYouTube.classList.add('form-span')
+    let labelYouTube = document.createElement('label');
+    labelYouTube.innerHTML = `<b>YouTube URL:</b>`;
+    let inputYouTube = document.createElement('input');
+    inputYouTube.type = 'text';
+    inputYouTube.id = 'inputYouTube';
+    spanYouTube.append(labelYouTube,document.createElement('br'),inputYouTube)
+
+    form.append(spanYouTube,document.createElement('br'))
+
+    let spanGitHub = document.createElement('span');
+    spanGitHub.classList.add('form-span')
+    let labelGitHub = document.createElement('label');
+    labelGitHub.innerHTML = `<b>GitHub URL:</b>`;
+    let inputGitHub = document.createElement('input');
+    inputGitHub.type = 'text';
+    inputGitHub.id = 'inputGitHub';
+    spanGitHub.append(labelGitHub,document.createElement('br'),inputGitHub)
+
+    form.append(spanGitHub,document.createElement('br'))
+
+    let spanInstagram = document.createElement('span');
+    spanInstagram.classList.add('form-span')
+    let labelInstagram = document.createElement('label');
+    labelInstagram.innerHTML = `<b>Instagram URL:</b>`;
+    let inputInstagram = document.createElement('input');
+    inputInstagram.type = 'text';
+    inputInstagram.id = 'inputInstagram';
+    spanInstagram.append(labelInstagram,document.createElement('br'),inputInstagram)
+
+    form.append(spanInstagram,document.createElement('br'))
+
     let spanImage = document.createElement('span');
     spanImage.classList.add('form-span');
     let labelImage = document.createElement('label');
@@ -603,8 +702,14 @@ function buildDescription(){
     description += currentParameters.website.length > 0 ? `Website: <a href="${currentParameters.website}"${currentParameters.website}</a><br>` : '';
     description += currentParameters.city.length > 0 ? `City: ${currentParameters.city}<br>` : '';
     description += currentParameters.address.length > 0 ? `Address: ${currentParameters.address}<br>` : '';
-    description += currentParameters.facebook_link.length > 0 ? `Address: ${currentParameters.facebook_link}<br>` : 'facebook.com';
-    
+    description += currentParameters.facebook.length > 0 ? `Facebook: <a href="${currentParameters.facebook}" target="_blank">Facebook</a><br>` : '';
+    description += currentParameters.linkedin.length > 0 ? `LinkedIn: <a href="${currentParameters.linkedin}" target="_blank">LinkedIn</a><br>` : '';
+    description += currentParameters.twitter.length > 0 ? `Twitter: <a href="${currentParameters.twitter}" target="_blank">Twitter</a><br>` : '';
+    description += currentParameters.mastodon.length > 0 ? `Mastodon: <a href="${currentParameters.mastodon}" target="_blank">Mastodon</a><br>` : '';
+    description += currentParameters.youtube.length > 0 ? `YouTube: <a href="${currentParameters.youtube}" target="_blank">YouTube</a><br>` : '';
+    description += currentParameters.github.length > 0 ? `GitHub: <a href="${currentParameters.github}" target="_blank">GitHub</a><br>` : '';
+    description += currentParameters.instagram.length > 0 ? `Instagram: <a href="${currentParameters.instagram}" target="_blank">Instagram</a><br>` : '';
+
     return description
 
 }
@@ -681,6 +786,13 @@ function submitForm(){
     currentParameters.country = document.getElementById('inputCountry').value;
     currentParameters.city = document.getElementById('inputCity').value;
     currentParameters.address = document.getElementById('inputAddress').value;
+    currentParameters.facebook = document.getElementById('inputFacebook').value;
+    currentParameters.linkedin = document.getElementById('inputLinkedIn').value;
+    currentParameters.twitter = document.getElementById('inputTwitter').value;
+    currentParameters.mastodon = document.getElementById('inputMastodon').value;
+    currentParameters.youtube = document.getElementById('inputYouTube').value;
+    currentParameters.github = document.getElementById('inputGitHub').value;
+    currentParameters.instagram = document.getElementById('inputInstagram').value;
     currentParameters.description = buildDescription()
     currentParameters.logo_url = document.getElementById('inputImage').value
     
@@ -717,6 +829,13 @@ function submitComment(){
     currentParameters.country = document.getElementById('inputCountry').value;
     currentParameters.city = document.getElementById('inputCity').value;
     currentParameters.address = document.getElementById('inputAddress').value;
+    currentParameters.facebook = document.getElementById('inputFacebook').value;
+    currentParameters.linkedin = document.getElementById('inputLinkedIn').value;
+    currentParameters.twitter = document.getElementById('inputTwitter').value;
+    currentParameters.mastodon = document.getElementById('inputMastodon').value;
+    currentParameters.youtube = document.getElementById('inputYouTube').value;
+    currentParameters.github = document.getElementById('inputGitHub').value;
+    currentParameters.instagram = document.getElementById('inputInstagram').value;
     currentParameters.description = buildDescription();
     currentParameters.logo_url = document.getElementById('inputImage').value
     
